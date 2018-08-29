@@ -1,0 +1,31 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    envTemplate:
+      template: "{{.DOCKER_REGISTRY}}/matt-a-gill-me-com/jx-app:{{.VERSION}}"
+  artifacts:
+  - imageName: changeme
+    workspace: .
+    docker: {}
+  local: {}
+deploy:
+  kubectl:
+    manifests:
+profiles:
+- name: dev
+  build:
+    tagPolicy:
+      envTemplate:
+        template: "{{.DOCKER_REGISTRY}}/matt-a-gill-me-com/jx-app:{{.DIGEST_HEX}}"
+    artifacts:
+    - docker: {}
+    local: {}
+  deploy:
+    helm:
+      releases:
+      - name: jx-app
+        chartPath: charts/jx-app
+        setValueTemplates:
+          image.repository: "{{.DOCKER_REGISTRY}}/matt-a-gill-me-com/jx-app"
+          image.tag: "{{.TAG}}"
