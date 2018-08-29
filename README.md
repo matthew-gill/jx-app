@@ -1,3 +1,3 @@
-# node 
+# JX App 
 
-Simple Hello World that listens on localhost:8080
+[![Waffle.io - Issues in progress](https://badge.waffle.io/matthew-gill/jx-app.png?label=in%20progress&title=In%20Progress)](http://waffle.io/matthew-gill/jx-app)
