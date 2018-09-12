@@ -8,6 +8,10 @@ metadata:
 spec:
   replicas: 1
   template:
+    metadata:
+      labels:
+        draft: {{ default "draft-app" .Values.draft }}
+        app: devdb{{ template "fullname" . }}
     spec:
       containers:
       - name: devdb
