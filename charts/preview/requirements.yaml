@@ -11,3 +11,7 @@ dependencies:
 - alias: preview
   name: jx-app
   repository: file://../jx-app
+- alias: devdb
+  name: devdb
+  repository: https://chartmuseum.build.cd.jenkins-x.io
+  version: 0.1.0
