@@ -51,7 +51,7 @@ app.get('/', function (req, res) {
             txt += '<form action="/update" method="GET" target="fakeajax"><input type="text" name="val"/><input type="submit"></form>';
 
             for (let row in result) {
-                txt += '<b style="color: orange">' + result[row].productLine + '</b><br /><br /> ';
+                txt += '<b style="color: green">' + result[row].productLine + '</b><br /><br /> ';
                 txt += result[row].textDescription + '<br /><hr />';
             }
 
