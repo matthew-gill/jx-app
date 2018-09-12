@@ -8,10 +8,10 @@ dependencies:
   name: exposecontroller
   repository: https://chartmuseum.build.cd.jenkins-x.io
   version: 2.3.56
-- alias: preview
-  name: jx-app
-  repository: file://../jx-app
 - alias: devdb
   name: devdb
   repository: https://chartmuseum.build.cd.jenkins-x.io
   version: 0.1.0
+- alias: preview
+  name: jx-app
+  repository: file://../jx-app
