@@ -18,13 +18,11 @@ spec:
 {{- end }}
     spec:
       containers:
-      - name: devdb
-        image: eu.gcr.io/mmtest-212008/devdb:latest
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         env:
         - name: DB_HOST
-          value: "127.0.0.1"
+          value: "scm-devdb"
         - name: DB_PORT
           value: "3306"
         - name: DB_USERNAME

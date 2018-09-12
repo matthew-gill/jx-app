@@ -18,20 +18,45 @@ var con = mysql.createConnection({
 });
 
 
+app.get('/update', function (req, res) {
 
+    let valfromurl = req.query.val;
 
+    con.connect(function (err) {
+        if (err) {
+            console.log(err);
+        }
 
+        con.query('UPDATE productlines set textDescription=\''+ valfromurl +'\' WHERE productLine = \'Classic Cars\'', function (err, result) {
+            res.send('Updated');
+        });
+    });
+
+});
 
 app.get('/', function (req, res) {
 
-    con.connect(function(err) {
-        con.query("SELECT productLine FROM productlines", function (err, result) {
+    con.connect(function (err) {
+        if (err) {
+            console.log(err);
+        }
 
-            let txt = '';
+        con.query('SELECT productLine, textDescription FROM productlines', function (err, result) {
 
-            for(let row in result) {
-                txt += result[row].productLine + '<br /><br /> ';
+            if (err) {
+                console.log(err);
             }
+
+            let txt = '<meta http-equiv="refresh" content="5">';
+            txt += '<form action="/update" method="GET" target="fakeajax"><input type="text" name="val"/><input type="submit"></form>';
+
+            for (let row in result) {
+                txt += '<b style="color: green">' + result[row].productLine + '</b><br /><br /> ';
+                txt += result[row].textDescription + '<br /><hr />';
+            }
+
+            txt += '<iframe name="fakeajax" id="fakeajax" style="display:none;"></iframe>';
+
 
 
             res.send(txt);
