@@ -18,8 +18,6 @@ spec:
 {{- end }}
     spec:
       containers:
-      - name: devdb
-        image: eu.gcr.io/mmtest-212008/devdb:latest
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         env:
