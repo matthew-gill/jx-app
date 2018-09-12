@@ -9,9 +9,9 @@ dependencies:
   repository: https://chartmuseum.build.cd.jenkins-x.io
   version: 2.3.56
 - alias: devdb
-  name: devdb
+  name: scm-devdb
   repository: https://chartmuseum.build.cd.jenkins-x.io
-  version: 0.1.0
+  version: 0.0.3
 - alias: preview
   name: jx-app
   repository: file://../jx-app
