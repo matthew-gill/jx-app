@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: draft
-  tag: 
+  repository: 10.35.251.64:5000/matt-a-gill-me-com/jx-app
+  tag: 2.1.2
   pullPolicy: IfNotPresent
 service:
   name: jx-app
