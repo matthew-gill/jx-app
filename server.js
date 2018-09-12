@@ -1,21 +1,43 @@
+const express = require('express')
+const app     = express()
+var mysql     = require('mysql')
 
-var http = require('http');
-var fileSystem = require('fs');
+const DB_HOST     = process.env.DB_HOST;
+const DB_PORT     = process.env.DB_PORT;
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_NAME     = process.env.DB_NAME;
 
-var server = http.createServer(function(req, resp){
-	fileSystem.readFile('./index.html', function(error, fileContent){
-		if(error){
-			resp.writeHead(500, {'Content-Type': 'text/plain'});
-			resp.end('Error');
-		}
-		else{
-			resp.writeHead(200, {'Content-Type': 'text/html'});
-			resp.write(fileContent);
-			resp.end();
-		}
-	});
+
+var con = mysql.createConnection({
+    host: DB_HOST,
+    port: DB_PORT,
+    user: DB_USERNAME,
+    password: DB_PASSWORD,
+    database: DB_NAME
 });
 
-server.listen(8080);
 
 
+
+
+
+app.get('/', function (req, res) {
+
+    con.connect(function(err) {
+        con.query("SELECT productLine FROM productlines", function (err, result) {
+
+            let txt = '';
+
+            for(let row in result) {
+                txt += result[row].productLine + '<br /><br /> ';
+            }
+
+
+            res.send(txt);
+        });
+    });
+
+});
+
+app.listen(8080, () => console.log('Example app listening on port 8080!'))
